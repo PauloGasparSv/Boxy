@@ -3,6 +3,7 @@ package com.paulovale.boxy.utils;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.BodyDef;
+import com.badlogic.gdx.physics.box2d.CircleShape;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.badlogic.gdx.physics.box2d.Shape;
@@ -48,7 +49,11 @@ public class BodyFactory {
     public static BodyFactory setKinematic(World world) {
         return body(world, BodyDef.BodyType.KinematicBody);
     }
-
+    //misc options
+    public BodyFactory setFixedRotation(boolean fixedRotation){
+        getBodyDef().fixedRotation = fixedRotation;
+        return this;
+    }
     //Defines Shape
     public BodyFactory setBoxShape(float width, float height){
         PolygonShape shape = new PolygonShape();
@@ -56,15 +61,22 @@ public class BodyFactory {
         _setShape(shape);
         return this;
     }
-
-
+    public BodyFactory setCircleShape(float radius){
+        CircleShape shape = new CircleShape();
+        shape.setRadius(radius);
+        _setShape(shape);
+        return this;
+    }
+    
+    public BodyFactory setMaterial(Material material){
+        return setMaterial(material, 1f);
+    }
+    
     //Sets density, friction and restitution
-    public BodyFactory setMaterial(Material material) {
+    public BodyFactory setMaterial(Material material, float density) {
         FixtureDef fixtureDef = new FixtureDef();
         fixtureDef.shape = getShape();
         _setFixtureDef(fixtureDef);
-        getBody().createFixture(fixtureDef);
-        getShape().dispose();
 
         switch(material){
             case Steel:
@@ -79,18 +91,23 @@ public class BodyFactory {
                 break;
             case Rubber:
                 fixtureDef.density = 1f;
-                fixtureDef.friction = 0f;
-                fixtureDef.restitution = 1f;
+                fixtureDef.friction = 0.2f;
+                fixtureDef.restitution = 0.8f;
                 break;
             case Stone:
                 fixtureDef.density = 1f;
                 fixtureDef.friction = 0.9f;
-                fixtureDef.restitution = 0.01f;
+                fixtureDef.restitution = 0.1f;
+                break;
             default:
                 fixtureDef.density = 1f;
                 fixtureDef.friction = 0.5f;
                 fixtureDef.restitution = 0.3f;
-            }
+        }
+
+        getBody().createFixture(fixtureDef);
+        getShape().dispose();
+        
         return this;
     }
 
@@ -107,7 +124,7 @@ public class BodyFactory {
     public Body create(){
         return body;
     }
-
+    
     //Getters and setters
     public void _setBody(Body body){
         this.body = body;

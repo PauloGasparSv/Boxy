@@ -88,6 +88,7 @@ public class PhysicsStage implements Screen {
     }
 
     public void update(float delta){
+        camera.update();
         worldStep(delta);
     }
 
