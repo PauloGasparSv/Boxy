@@ -8,24 +8,27 @@ import com.paulovale.boxy.utils.In;
 
 public class Player extends PhysicsActor{
 
+    private boolean grounded;
+
     private float speed;
     private float turnSpeed;
     private float jumpSpeed;
 
     public Player(World world){
-        super();
-
+        super(Type.Player);
+        
         speed = 410f;
         turnSpeed = 520f;
         jumpSpeed = 200f;
+        grounded = false;
 
-        this.body = BodyFactory
-                        .setDynamic(world)
-                        .setFixedRotation(true)
-                        .setBoxShape(24f / PXM, 32f / PXM)
-                        .setCustomMaterial(0.8f, 0.2f, 0f)
-                        .transform(0, 64f / PXM)
-                        .create();
+        setBody(BodyFactory
+                    .setDynamic(world)
+                    .setFixedRotation(true)
+                    .setBoxShape(24f / PXM, 32f / PXM)
+                    .setCustomMaterial(0.8f, 0.2f, 0f)
+                    .transform(0, 64f / PXM)
+                    .create()); 
     }
 
     @Override
@@ -58,9 +61,30 @@ public class Player extends PhysicsActor{
             }
         }
 
-        if(In.justJumped()){
+        if(isGrounded() && In.justJumped() && (int) velocity.y == 0){
+            jump();
             body.applyLinearImpulse(0f, jumpSpeed, this.body.getPosition().x, this.body.getPosition().y, true);
         }
+    }
+
+    public void groundMe(){
+        grounded = true;
+    }
+
+    public boolean isGrounded(){
+        return grounded;
+    }
+    
+    public void setGrounded(boolean grounded){
+        this.grounded = grounded;
+    }
+
+    public void fall(){
+        this.grounded = false;
+    }
+
+    public void jump(){
+        this.grounded = false;
     }
 
 }

@@ -44,7 +44,6 @@ public class PhysicsStage implements Screen {
     private void worldStep(float deltaTime) {
         float frameTime = Math.min(deltaTime, 0.25f);
         stepAccumulator += frameTime;
-        System.out.println(stepAccumulator);
         while (stepAccumulator >= timeStep) {
             world.step(timeStep, velocityIterations, positionIterations);
             stepAccumulator -= timeStep;

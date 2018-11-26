@@ -2,17 +2,18 @@ package com.paulovale.boxy.stages;
 
 import com.paulovale.boxy.utils.FrameRate;
 import com.paulovale.boxy.utils.In;
+import com.paulovale.boxy.utils.PhysicsObject;
+import com.paulovale.boxy.utils.SimpleContactListener;
 
 import java.util.LinkedList;
 
-import com.badlogic.gdx.physics.box2d.Body;
 import com.paulovale.boxy.actors.friendly.Player;
-import com.paulovale.boxy.utils.BodyFactory;
+import com.paulovale.boxy.objects.Floor;
 
 public class TestStage extends PhysicsStage {
         
     private FrameRate frameRate;
-    private LinkedList<Body> bodies;
+    private LinkedList<PhysicsObject> mapObjects;
     
     private Player player;
 
@@ -20,26 +21,25 @@ public class TestStage extends PhysicsStage {
         super();
         debugMode(true);
         
+        world.setContactListener(new SimpleContactListener());
+
         frameRate = new FrameRate();
 
         player = new Player(world);
         
-        bodies = new LinkedList<Body>();
+        mapObjects = new LinkedList<PhysicsObject>();
 
-        bodies.add(BodyFactory
-                    .setStatic(world)
-                    .setBoxShape(50f, 1f)
-                    .setMaterial(BodyFactory.Material.Stone)
-                    .transform(0f, -4f)
-                    .create());
+        mapObjects.add(new Floor(world, 128f, 32f, 0f, -128f));
 
-        bodies.add(BodyFactory
-                    .setDynamic(world)
-                    .setCircleShape(1f)
-                    // .setFixedRotation(true)
-                    .setMaterial(BodyFactory.Material.Rubber)
-                    .transform(1.2f, 10f)
-                    .create());
+        
+
+        // mapObjects.add(BodyFactory
+        //             .setDynamic(world)
+        //             .setCircleShape(1f)
+        //             // .setFixedRotation(true)
+        //             .setMaterial(BodyFactory.Material.Rubber)
+        //             .transform(1.2f, 10f)
+        //             .create());
 
     }
 
