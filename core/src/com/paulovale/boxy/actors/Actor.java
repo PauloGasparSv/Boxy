@@ -6,12 +6,8 @@ import com.badlogic.gdx.math.Vector2;
 public class Actor{
     private Vector2 position;
     
-    public void update(float delta){
-
-    }
-    public void draw(SpriteBatch batch){
-        
-    }
+    public void update(float delta){}
+    public void draw(SpriteBatch batch){}
 
     public void setPosition(Vector2 position){
         this.position = position;

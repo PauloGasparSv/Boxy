@@ -51,7 +51,7 @@ public class BodyFactory {
     }
     //misc options
     public BodyFactory setFixedRotation(boolean fixedRotation){
-        getBodyDef().fixedRotation = fixedRotation;
+        getBody().setFixedRotation(fixedRotation);
         return this;
     }
     //Defines Shape
@@ -90,9 +90,9 @@ public class BodyFactory {
                 fixtureDef.restitution = 0.3f;
                 break;
             case Rubber:
-                fixtureDef.density = 1f;
+                fixtureDef.density = 0.8f;
                 fixtureDef.friction = 0.2f;
-                fixtureDef.restitution = 0.8f;
+                fixtureDef.restitution = 0.7f;
                 break;
             case Stone:
                 fixtureDef.density = 1f;
@@ -104,6 +104,21 @@ public class BodyFactory {
                 fixtureDef.friction = 0.5f;
                 fixtureDef.restitution = 0.3f;
         }
+
+        getBody().createFixture(fixtureDef);
+        getShape().dispose();
+        
+        return this;
+    }
+
+    public BodyFactory setCustomMaterial(float density, float friction, float restitution) {
+        FixtureDef fixtureDef = new FixtureDef();
+        fixtureDef.shape = getShape();
+        _setFixtureDef(fixtureDef);
+
+        fixtureDef.density = density;
+        fixtureDef.friction = friction;
+        fixtureDef.restitution = restitution;
 
         getBody().createFixture(fixtureDef);
         getShape().dispose();

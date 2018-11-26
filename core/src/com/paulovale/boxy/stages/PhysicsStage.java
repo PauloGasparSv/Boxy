@@ -28,9 +28,9 @@ public class PhysicsStage implements Screen {
     }
 
     public void init(){
-        world = new World(new Vector2(0f, -10f), false);
+        world = new World(new Vector2(0f, -40f), false);
         debugRenderer = new Box2DDebugRenderer(true, true, true, true, true, true);
-        camera = new OrthographicCamera(60, 33.75f);
+        camera = new OrthographicCamera(60f, 33.75f);
     }
 
     public void debugMode(boolean mode){

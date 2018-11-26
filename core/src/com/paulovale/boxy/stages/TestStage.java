@@ -6,7 +6,7 @@ import com.paulovale.boxy.utils.In;
 import java.util.LinkedList;
 
 import com.badlogic.gdx.physics.box2d.Body;
-import com.paulovale.boxy.actors.good.BallPlayer;
+import com.paulovale.boxy.actors.friendly.Player;
 import com.paulovale.boxy.utils.BodyFactory;
 
 public class TestStage extends PhysicsStage {
@@ -14,7 +14,7 @@ public class TestStage extends PhysicsStage {
     private FrameRate frameRate;
     private LinkedList<Body> bodies;
     
-    private BallPlayer player;
+    private Player player;
 
     public TestStage(){
         super();
@@ -22,22 +22,15 @@ public class TestStage extends PhysicsStage {
         
         frameRate = new FrameRate();
 
-        player = new BallPlayer();
+        player = new Player(world);
         
         bodies = new LinkedList<Body>();
+
         bodies.add(BodyFactory
                     .setStatic(world)
                     .setBoxShape(50f, 1f)
                     .setMaterial(BodyFactory.Material.Stone)
                     .transform(0f, -4f)
-                    .create());
-
-        player.setBody(BodyFactory
-                    .setDynamic(world)
-                    .setCircleShape(1.5f)
-                    // .setFixedRotation(true)
-                    .setMaterial(BodyFactory.Material.Rubber)
-                    // .transform(0f, 5f)
                     .create());
 
         bodies.add(BodyFactory
@@ -64,6 +57,12 @@ public class TestStage extends PhysicsStage {
             camera.position.x += delta * 50f;
         } else if(In.cameraLeft()){
             camera.position.x -= delta * 50f;
+        }
+
+        if(In.cameraUp()){
+            camera.position.z -= delta * 1f;
+        } else if(In.cameraDown()){
+            camera.position.z += delta * 1f;
         }
 
         player.update(delta);
