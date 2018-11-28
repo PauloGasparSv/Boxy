@@ -3,7 +3,7 @@ package com.paulovale.boxy.actors.friendly;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.World;
 import com.paulovale.boxy.actors.PhysicsActor;
-import com.paulovale.boxy.utils.BodyFactory;
+import com.paulovale.boxy.physics.BodyFactory;
 import com.paulovale.boxy.utils.In;
 
 public class Player extends PhysicsActor{

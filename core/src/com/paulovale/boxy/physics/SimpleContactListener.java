@@ -1,4 +1,4 @@
-package com.paulovale.boxy.utils;
+package com.paulovale.boxy.physics;
 
 import com.badlogic.gdx.math.Vector2;
 
@@ -7,7 +7,7 @@ import com.badlogic.gdx.physics.box2d.ContactImpulse;
 import com.badlogic.gdx.physics.box2d.ContactListener;
 import com.badlogic.gdx.physics.box2d.Manifold;
 import com.paulovale.boxy.actors.friendly.Player;
-import com.paulovale.boxy.utils.PhysicsObject.Type;
+import com.paulovale.boxy.physics.PhysicsObject.Type;
 
 public class SimpleContactListener implements ContactListener {
     @Override

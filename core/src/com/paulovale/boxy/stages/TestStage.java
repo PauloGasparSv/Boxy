@@ -1,12 +1,12 @@
 package com.paulovale.boxy.stages;
 
-import com.paulovale.boxy.utils.BodyFactory;
+import com.paulovale.boxy.physics.BodyFactory;
 import com.paulovale.boxy.utils.FrameRate;
 import com.paulovale.boxy.utils.In;
 import com.paulovale.boxy.utils.Media;
-import com.paulovale.boxy.utils.PhysicsObject;
-import com.paulovale.boxy.utils.SimpleContactListener;
-import com.paulovale.boxy.utils.PhysicsObject.Type;
+import com.paulovale.boxy.physics.PhysicsObject;
+import com.paulovale.boxy.physics.SimpleContactListener;
+import com.paulovale.boxy.physics.PhysicsObject.Type;
 
 import box2dLight.PointLight;
 
@@ -56,14 +56,6 @@ public class TestStage extends PhysicsStage {
         direction = -90;
         sun = new box2dLight.DirectionalLight(rayHandler, 1000, new Color(1, 1, 1, 0.9f), direction);
         time = 0;
-        Body bola = BodyFactory
-            .setStatic(world)
-            .setCircleShape(40f)
-            .setMaterial(BodyFactory.Material.Rubber)
-            .transform(0, 0)
-            .create();
-        bola.setUserData(new PhysicsObject(Type.Npc));
-
         bg = new TextureRegion(Media.loadTexture("bg.jpg"));
 
     }

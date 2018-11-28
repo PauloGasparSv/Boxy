@@ -1,9 +1,9 @@
-package com.paulovale.boxy.utils;
+package com.paulovale.boxy.physics;
 
 import com.badlogic.gdx.physics.box2d.Body;
 
 public class PhysicsObject{
-    public static final int PXM = 16;
+    public static final float PXM = 16;
     protected Body body;
 	protected Type type;
 	
@@ -11,12 +11,21 @@ public class PhysicsObject{
 		this.type = type;
 	}
 
+	public PhysicsObject(){
+		this.type = Type.Unset;
+	}
+
 	protected void setBody(Body body){
 		this.body = body;
 		this.body.setUserData(this);
 	}
+	
+	protected void setTransform(float x, float y, float a){
+		this.body.setTransform(x / PXM, y / PXM, a);
+	}
 
     public static enum Type {
+		Unset(-1),
         Player(0),
         Floor(1),
 		Wall(2),

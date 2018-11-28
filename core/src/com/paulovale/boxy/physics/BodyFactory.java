@@ -1,4 +1,4 @@
-package com.paulovale.boxy.utils;
+package com.paulovale.boxy.physics;
 
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
@@ -9,14 +9,18 @@ import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.badlogic.gdx.physics.box2d.Shape;
 import com.badlogic.gdx.physics.box2d.World;
 
-public class BodyFactory {
+public class BodyFactory extends PhysicsObject{
     private Body body;
     private Shape shape;
     private FixtureDef fixture;
     private BodyDef bodyDef;
 
     public static enum Material {
-		Steel(0), Wood(1), Rubber(2), Stone(3), Misc(-1);
+        Steel(0), 
+        Wood(1), 
+        Rubber(2), 
+        Stone(3), 
+        Misc(-1);
 
 		private int value;
 
@@ -26,7 +30,9 @@ public class BodyFactory {
 		public int getValue () {
 			return value;
 		}
-	};
+    };
+    
+
     //Main create body
     public static BodyFactory body(World world, BodyDef.BodyType type) {
         BodyFactory bf = new BodyFactory();
@@ -57,13 +63,13 @@ public class BodyFactory {
     //Defines Shape
     public BodyFactory setBoxShape(float width, float height){
         PolygonShape shape = new PolygonShape();
-        shape.setAsBox(width, height);
+        shape.setAsBox(width / PXM, height / PXM);
         _setShape(shape);
         return this;
     }
     public BodyFactory setCircleShape(float radius){
         CircleShape shape = new CircleShape();
-        shape.setRadius(radius);
+        shape.setRadius(radius / PXM);
         _setShape(shape);
         return this;
     }
@@ -131,7 +137,7 @@ public class BodyFactory {
         return transform(x, y, 0);
     }
     public BodyFactory transform(float x, float y, float angle){
-        this.body.setTransform(new Vector2(x, y), angle);
+        this.body.setTransform(new Vector2(x / PXM, y / PXM), angle);
         return this;
     }
 

@@ -2,7 +2,7 @@ package com.paulovale.boxy.actors;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
-import com.paulovale.boxy.utils.PhysicsObject;
+import com.paulovale.boxy.physics.PhysicsObject;
 
 public class PhysicsActor extends PhysicsObject{
     private Vector2 position;

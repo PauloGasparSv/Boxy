@@ -1,8 +1,8 @@
 package com.paulovale.boxy.objects;
 
 import com.badlogic.gdx.physics.box2d.World;
-import com.paulovale.boxy.utils.BodyFactory;
-import com.paulovale.boxy.utils.PhysicsObject;
+import com.paulovale.boxy.physics.BodyFactory;
+import com.paulovale.boxy.physics.PhysicsObject;
 
 public class Floor extends PhysicsObject {
     
