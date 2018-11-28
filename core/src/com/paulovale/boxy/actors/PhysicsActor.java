@@ -15,9 +15,7 @@ public class PhysicsActor extends PhysicsObject{
     public void draw(SpriteBatch batch){}
 
     public void setPosition(Vector2 position){
-        //Lazy, i know.
-        setX(position.x);
-        setY(position.y);
+        this.position.set(position.scl(MPX));
     } 
     public void setX(float x){
         position.x = x / PXM;

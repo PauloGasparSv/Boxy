@@ -10,7 +10,7 @@ public class Actor{
     public void draw(SpriteBatch batch){}
 
     public void setPosition(Vector2 position){
-        this.position = position;
+        this.position.set(position);
     } 
     public void setX(float x){
         position.x = x;

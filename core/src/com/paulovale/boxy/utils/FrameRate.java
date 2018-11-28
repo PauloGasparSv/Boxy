@@ -4,8 +4,10 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Disposable;
 import com.badlogic.gdx.utils.TimeUtils;
+import com.paulovale.boxy.physics.PhysicsObject;
 
 /**
  * A nicer class for showing framerate that doesn't spam the console
@@ -25,6 +27,7 @@ public class FrameRate implements Disposable {
         sinceChange = 0;
         frameRate = Gdx.graphics.getFramesPerSecond();
         font = new BitmapFont();
+        font.getData();
     }
 
 
@@ -39,8 +42,8 @@ public class FrameRate implements Disposable {
         }
     }
 
-    public void render(SpriteBatch batch, OrthographicCamera camera) {
-        font.draw(batch, (int)frameRate + " fps", camera.position.x, camera.position.y);
+    public void render(SpriteBatch batch, Vector2 cameraPosition, Vector2 viewport) {
+        font.draw(batch, (int)frameRate + " fps", cameraPosition.x - viewport.x / 2f + 32f,cameraPosition.y + viewport.y/ 2f - 32f);
     }
 
     public void dispose() {

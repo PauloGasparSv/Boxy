@@ -3,7 +3,9 @@ package com.paulovale.boxy.physics;
 import com.badlogic.gdx.physics.box2d.Body;
 
 public class PhysicsObject{
-    public static final float PXM = 16;
+	public static final float PXM = 16;
+	public static final float MPX = 0.0625f;
+	
     protected Body body;
 	protected Type type;
 	

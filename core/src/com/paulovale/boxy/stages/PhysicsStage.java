@@ -8,6 +8,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
 import com.badlogic.gdx.physics.box2d.World;
+import com.paulovale.boxy.physics.PhysicsObject;
 
 import box2dLight.RayHandler;
 
@@ -66,7 +67,7 @@ public class PhysicsStage implements Screen {
         worldStep(delta);
 
         batch.begin();
-        batch.setProjectionMatrix(camera.combined);
+        batch.setProjectionMatrix(camera.combined.scl(PhysicsObject.MPX));
         batch.enableBlending();
         draw();
         batch.end();
@@ -116,7 +117,7 @@ public class PhysicsStage implements Screen {
 
     public void debugDraw(){
         if(debugMode){
-            debugRenderer.render(world, camera.combined);
+            debugRenderer.render(world, camera.combined.scl(PhysicsObject.PXM));
         }
     }
 
