@@ -27,7 +27,7 @@ public class Player extends PhysicsActor{
                     .setFixedRotation(true)
                     .setBoxShape(24f / PXM, 32f / PXM)
                     .setCustomMaterial(0.8f, 0.2f, 0f)
-                    .transform(0, 64f / PXM)
+                    .transform(0, 10f)
                     .create()); 
     }
 

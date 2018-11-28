@@ -15,8 +15,8 @@ public class SimpleContactListener implements ContactListener {
         PhysicsObject bodyA = (PhysicsObject) contact.getFixtureA().getBody().getUserData();
         PhysicsObject bodyB = (PhysicsObject) contact.getFixtureB().getBody().getUserData();
 
-        System.out.println("1: " + bodyA.type);
-        System.out.println("2: " + bodyB.type);
+        // System.out.println("1: " + bodyA.type);
+        // System.out.println("2: " + bodyB.type);
         
         if(bodyA.type == Type.Player){
             Player player = (Player) bodyA;
