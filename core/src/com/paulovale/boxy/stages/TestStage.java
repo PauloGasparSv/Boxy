@@ -34,6 +34,8 @@ public class TestStage extends PhysicsStage {
 
     private TextureRegion bg;
 
+    private Floor floor;
+
     public TestStage(){
         super();
         debugMode(true);
@@ -44,6 +46,8 @@ public class TestStage extends PhysicsStage {
 
         player = new Player(world);
         
+        floor = new Floor(world, 0, -64, 128, 64,);
+
         mapObjects = new LinkedList<PhysicsObject>();
 
         // mapObjects.add(new Floor(world, 128f, 32f, 0f, -128f));

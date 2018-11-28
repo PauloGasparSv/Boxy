@@ -15,21 +15,23 @@ public class PhysicsActor extends PhysicsObject{
     public void draw(SpriteBatch batch){}
 
     public void setPosition(Vector2 position){
-        this.position = position;
+        //Lazy, i know.
+        setX(position.x);
+        setY(position.y);
     } 
     public void setX(float x){
-        position.x = x;
+        position.x = x / PXM;
     }
     public void setY(float y){
-        position.y = y;
+        position.y = y / PXM;
     }
     public float getX(){
-        return position.x;
+        return position.x * PXM;
     }
     public float getY(){
-        return position.y;
+        return position.y * PXM;
     }
     public Vector2 getPosition(){
-        return position;
+        return position.scl(PXM);
     }
 }

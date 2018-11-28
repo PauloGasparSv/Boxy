@@ -6,14 +6,14 @@ import com.paulovale.boxy.physics.PhysicsObject;
 
 public class Floor extends PhysicsObject {
     
-    public Floor(World world, float width, float height, float x, float y){
+    public Floor(World world, float x, float y, float width, float height){
         super(Type.Floor);
         
         setBody(BodyFactory
                 .setStatic(world)
-                .setBoxShape(width / PXM, height / PXM)
+                .setBoxShape(width, height)
                 .setMaterial(BodyFactory.Material.Stone)
-                .transform(x / PXM, y / PXM)
+                .transform(x, y)
                 .create());
     }
 }
